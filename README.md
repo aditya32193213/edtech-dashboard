@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# 🎓 LearnPro – EdTech Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+LearnPro is a modern EdTech dashboard built with **React**, featuring authentication, course enrollment, progress tracking, dark mode, and user profiles.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- 🔐 Authentication (Signup / Login / Logout)
+- 👤 User Profile Management
+- 📚 Course Browsing & Enrollment
+- 🧠 Per-User Progress Tracking
+- 🌙 Dark Mode (Global)
+- 🔒 Protected Routes
+- 🔔 Toast Notifications
+- ⏳ Skeleton Loaders
+- 📱 Responsive UI
+- 💾 LocalStorage Persistence
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+- **Frontend:** React, React Router
+- **Styling:** Tailwind CSS
+- **State Persistence:** LocalStorage
+- **Notifications:** react-hot-toast
+- **Icons & UI:** Custom components
+- **Deployment:** Vercel / Netlify
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📂 Project Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```plaintext
+src/
+├─ components/
+├─ pages/
+├─ data/
+├─ utils/
+├─ App.jsx
+└─ main.jsx
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```plaintext
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🔐 Authentication Logic
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Users stored in LocalStorage
+- Per-user enrollments & progress
+- Protected routes with redirect memory
+- Logout clears user-specific data
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🧪 Demo Credentials
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Create your own account using Signup  
+or use any test credentials.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🌍 Live Demo
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+🔗 **Live URL:** _(add after deployment)_
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📸 Screenshots
 
-### Analyzing the Bundle Size
+_Add screenshots here_
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 📌 Future Enhancements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Backend integration (Node + MongoDB)
+- Real course video progress
+- Admin dashboard
+- Payment gateway
+- Certificates download
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🧑‍💻 Author
 
-### Deployment
+**Aditya**  
+Full Stack Developer | React | EdTech
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+# ⚙️ Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🔽 Clone Repositories
+
+### Frontend:
+
+
+```bash
+git clone https://github.com/aditya32193213/edtech-dashboard.git
+cd edtech-dashboard-frontend
+npm install
+npm start
+```
+---
+
+⭐ If you like this project, give it a star!
