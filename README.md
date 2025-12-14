@@ -175,7 +175,35 @@ or use any test credentials.
 
 ## 📸 Screenshots
 
-_Add screenshots here_
+### 🏠 Homepage
+![Homepage Screenshot](./screenshots/Homepage.png)
+
+The landing page introduces **LearnPro**, showcasing featured courses, platform statistics, and clear navigation for learners.
+
+### 📊 Dashboard
+![Dashboard Screenshot](./screenshots/Dashboard.png)
+
+The personalized dashboard displays enrolled courses, learning progress, statistics, and the learner’s activity streak.
+
+### 🔐 Login Page
+![Login Page Screenshot](./screenshots/Loginpage.png)
+
+Secure authentication page allowing users to log in using saved credentials with validation and toast feedback.
+
+### 📚 Courses Page
+![Courses Page Screenshot](./screenshots/Coursepage.png)
+
+Browse all available courses with filtering, search functionality, and detailed course information.
+
+### 👤 Profile Page
+![Profile Page Screenshot](./screenshots/profile.png)
+
+The profile page allows users to view and update their personal information, manage account details, and securely log out of the application.
+
+### 📘 Course Details Page
+![Course Details Screenshot](./screenshots/course-details.png)
+
+Detailed course view including instructor info, syllabus highlights, enrollment status, and protected enroll functionality.
 
 ---
 
@@ -196,6 +224,14 @@ Full Stack Developer | React | EdTech
 
 ---
 
+### ⭐ Support
+
+---
+
+If you like this project, please ⭐ star the repository. Your support helps me grow as a developer ✨
+
+---
+
 # ⚙️ Installation
 
 ## 🔽 Clone Repositories
@@ -210,5 +246,3 @@ npm install
 npm start
 ```
 ---
-
-⭐ If you like this project, give it a star!
