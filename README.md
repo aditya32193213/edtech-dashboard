@@ -169,7 +169,7 @@ or use any test credentials.
 
 ## 🌍 Live Demo
 
-🔗 **Live URL:** _(add after deployment)_
+🔗 **Live URL:** https://edtech-dashboard-frontend.vercel.app/
 
 ---
 
