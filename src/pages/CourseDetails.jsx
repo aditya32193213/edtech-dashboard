@@ -26,6 +26,7 @@ export default function CourseDetails() {
     "Collaborate effectively in modern development teams",
     "Prepare for technical interviews with confidence"
   ];
+  console.log("Current User:", user);
 
   useEffect(() => {
     async function loadCourse() {
@@ -198,7 +199,7 @@ export default function CourseDetails() {
                      <CourseVideo 
                         videoUrl={course.videoUrl} 
                         courseId={course._id} 
-                        isStudent={user?.role === "student"}
+                        isStudent={user?.role?.toLowerCase() === "student" && isEnrolled}                        
                      />
                    </div>
                  </div>

@@ -29,7 +29,13 @@ export const updateProfile = async (name) => {
   const res = await api.put("/auth/me", { name });
 
   if (res.data) {
-    localStorage.setItem("currentUser", JSON.stringify(res.data));
+    // FIX: Get current data first
+    const existingUser = getUser(); 
+    
+    // FIX: Merge existing data (like role) with new data
+    const updatedUser = { ...existingUser, ...res.data }; 
+
+    localStorage.setItem("currentUser", JSON.stringify(updatedUser));
   }
 
   return res.data;
