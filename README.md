@@ -165,11 +165,14 @@ or use any test credentials.
 
 ---
 
-## 🌍 Live Demo
+## 🌍🚀 Live Deployment
 
 🔗 **Live URL:** https://edtech-dashboard-frontend.vercel.app/
 
 ---
+
+## 🎥 Demo Video
+👉 **[https://drive.google.com/file/d/1iYq5c36Uf5TnRDTsTJKlU4racMxGCuRc/view?usp=sharing](https://drive.google.com/file/d/1iYq5c36Uf5TnRDTsTJKlU4racMxGCuRc/view?usp=sharing)**
 
 ## 📸 Screenshots
 
