@@ -3,8 +3,11 @@ import { useSearchParams, Link } from "react-router-dom";
 import CourseCard from "../components/CourseCard";
 import CourseCardSkeleton from "../components/skeletons/CourseCardSkeleton";
 import { fetchCourses } from "../services/courseApi";
+import ChatbotWidget from "../components/chatbot/ChatbotWidget";
+import { getUser } from "../utils/auth";
 
 export default function Courses() {
+  const user = getUser();
   const [params, setParams] = useSearchParams();
   const searchFromURL = params.get("search") || "";
 
@@ -138,6 +141,7 @@ export default function Courses() {
           </>
         )}
       </div>
+      <ChatbotWidget user={user} />
     </section>
   );
 }

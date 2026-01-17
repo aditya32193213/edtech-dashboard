@@ -4,6 +4,7 @@ import DashboardSkeleton from "../components/skeletons/DashboardSkeleton";
 import { getUser } from "../utils/auth";
 import { fetchMyEnrollments } from "../services/enrollment";
 import { fetchProgressByCourse } from "../services/progress.js";
+import ChatbotWidget from "../components/chatbot/ChatbotWidget.jsx";
 
 export default function Dashboard() {
   const [loading, setLoading] = useState(true);
@@ -220,7 +221,9 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+      <ChatbotWidget user={user} />
     </section>
+    
   );
 }
 function StatCard({ title, value, icon, color }) {

@@ -7,6 +7,7 @@ import { fetchCourseById } from "../services/courseApi";
 import { createCheckoutSession } from "../services/payment";
 import { fetchMyEnrollments } from "../services/enrollment";
 import CourseDetailsSkeleton from "../components/skeletons/CourseDetailsSkeleton.jsx";
+import ChatbotWidget from "../components/chatbot/ChatbotWidget.jsx";
 
 export default function CourseDetails() {
   const { id } = useParams();
@@ -267,6 +268,7 @@ export default function CourseDetails() {
           </div>
         </div>
       </div>
+      <ChatbotWidget user={user} />
     </section>
   );
 }

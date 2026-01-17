@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getUser, logoutUser, updateProfile } from "../utils/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import ChatbotWidget from "../components/chatbot/ChatbotWidget";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -112,6 +113,7 @@ export default function Profile() {
           </div>
         </div>
       </div>
+      <ChatbotWidget user={user} />
     </div>
   );
 }
