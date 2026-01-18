@@ -16,6 +16,7 @@ LearnPro is a modern EdTech dashboard built with **React**, featuring authentica
 - ⏳ Skeleton Loaders
 - 📱 Responsive UI
 - 💾 LocalStorage Persistence
+- ⚡ Performance-optimized UI
 
 ---
 
@@ -30,6 +31,34 @@ LearnPro is a modern EdTech dashboard built with **React**, featuring authentica
 
 ---
 
+## 📊 Monitoring & Analytics
+
+- 📈 Google Analytics (GA4)
+- 🛡️ Sentry (Frontend)
+
+---
+
+## ⚡ Performance & Optimization
+
+- 🚀 Lazy-loaded course images
+- 🚀 Optimized DOM size
+- 🚀 CDN-based asset delivery (Vercel)
+- Lighthouse audit conducted on live deployment
+
+---
+
+### Lighthouse Scores
+- Performance: 88
+- Accessibility: 87
+- Best Practices: 77
+- SEO: 92
+
+### ☁️ Deployment
+
+- 🚀 Vercel (CI/CD enabled)
+---
+
+Production crash monitoring
 ## 📂 Project Structure
 
 ```plaintext
@@ -204,6 +233,12 @@ The profile page allows users to view and update their personal information, man
 ### 📘 Course Details Page
 ![Course Details Screenshot](./screenshots/course-details.png)
 
+### 📊 Google Analytics Page
+![Google Analytics Screenshot](./screenshots/analytics-active.png)
+
+### ⚡ LightHouse Score
+![Google Analytics Screenshot](./screenshots/lighthouse-performance.png)
+
 Detailed course view including instructor info, syllabus highlights, enrollment status, and protected enroll functionality.
 
 ---
@@ -247,3 +282,13 @@ npm install
 npm start
 ```
 ---
+
+### ⚙️ Environment Variables
+
+Create a .env file in the root directory:
+```bash
+REACT_APP_STRIPE_PUBLIC_KEY=Stripe_public_key
+REACT_APP_API_BASE_URL=https://edtech-dashboard-backend.onrender.com/api
+REACT_APP_SENTRY_DSN=your_frontend_sentry_dsn
+```
+
