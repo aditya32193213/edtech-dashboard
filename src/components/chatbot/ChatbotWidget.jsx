@@ -3,6 +3,7 @@ import { X, Send, Sparkles, RotateCcw, MessageSquare, Loader2 } from "lucide-rea
 import { sendChatMessage } from "../../services/chatbotApi";
 import { fetchMyEnrollments } from "../../services/enrollment";
 import { fetchProgressByCourse } from "../../services/progress";
+import { fetchCourses } from "../../services/courseApi";
 
 const ChatbotWidget = ({ user }) => {
   const [open, setOpen] = useState(false);
@@ -72,11 +73,27 @@ ${!user ? "💡 Log in for personalized recommendations based on your progress!"
     const buildContext = async () => {
       // ✅ FIX: Handle guest users - check for BOTH user.id and user._id
       if (!user || !(user.id || user._id)) {
+        // ✅ NEW: Fetch available courses even for guest users
+        let availableCourses = [];
+        try {
+          const courses = await fetchCourses();
+          availableCourses = courses.slice(0, 6).map(course => 
+            `- ${course.title} (${course.category || "General"}${course.level ? ` - ${course.level}` : ""})`
+          );
+        } catch (courseError) {
+          console.error("Course catalog fetch failed:", courseError);
+        }
+
         setChatContext(`
 User Type: Guest (Not logged in)
 Access Level: Limited
 Available Actions: Browse courses, view general information
 Instruction: Provide general course information. For personalized help, suggest logging in.
+
+Available Course Catalog:
+${availableCourses.length > 0 
+  ? availableCourses.join('\n')
+  : '- Course catalog temporarily unavailable'}
 `);
         return;
       }
@@ -114,6 +131,17 @@ Instruction: Provide general course information. For personalized help, suggest 
           // Continue with empty enrollments - user might be new or API temporarily down
         }
 
+        // ✅ NEW: Fetch available courses for recommendations
+        let availableCourses = [];
+        try {
+          const courses = await fetchCourses();
+          availableCourses = courses.slice(0, 6).map(course => 
+            `- ${course.title} (${course.category || "General"}${course.level ? ` - ${course.level}` : ""})`
+          );
+        } catch (courseError) {
+          console.error("Course catalog fetch failed:", courseError);
+        }
+
         const contextString = `
 User Profile:
 - Name: ${user.name}
@@ -133,11 +161,17 @@ ${enrollments.length > 0
   ? enrollments.map(e => `- ${e.course?.title || e.title || "Unknown"} (${e.course?.category || "General"})`).join('\n')
   : '- No courses enrolled yet'}
 
+Available Course Catalog:
+${availableCourses.length > 0 
+  ? availableCourses.join('\n')
+  : '- Course catalog temporarily unavailable'}
+
 Instructions for AI:
 - Provide personalized recommendations based on enrolled courses and progress
 - If user has high completion rates, suggest advanced courses
 - If user has low completion rates, provide motivation and study tips
 - Suggest complementary courses based on what they're currently learning
+- When recommending courses, ONLY suggest courses from the Available Course Catalog above
 - Be encouraging and supportive of their learning journey
 - Answer questions about platform features and course navigation
 - Help with course selection and learning path planning
