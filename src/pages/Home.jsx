@@ -254,7 +254,7 @@ export default function Home() {
     <div className="bg-gray-50 dark:bg-slate-950 transition-colors duration-300">
 
       {/* 🔴 TEMPORARY SENTRY TEST BUTTON (REMOVE AFTER TEST) */}
-      <div className="flex justify-center pt-6">
+      <div className="flex justify-center pt-40">
         <button
           onClick={() => {
             throw new Error("Sentry Home Page Test Error");
