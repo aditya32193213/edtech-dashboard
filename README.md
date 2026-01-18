@@ -229,6 +229,7 @@ Browse all available courses with filtering, search functionality, and detailed 
 ![Profile Page Screenshot](./screenshots/Profilepage.png)
 
 The profile page allows users to view and update their personal information, manage account details, and securely log out of the application.
+Detailed course view including instructor info, syllabus highlights, enrollment status, and protected enroll functionality.
 
 ### 📘 Course Details Page
 ![Course Details Screenshot](./screenshots/course-details.png)
@@ -239,7 +240,7 @@ The profile page allows users to view and update their personal information, man
 ### ⚡ LightHouse Score
 ![Google Analytics Screenshot](./screenshots/lighthouse-performance.png)
 
-Detailed course view including instructor info, syllabus highlights, enrollment status, and protected enroll functionality.
+
 
 ---
 
