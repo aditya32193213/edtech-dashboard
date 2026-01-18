@@ -206,15 +206,14 @@
 
 
 
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import CourseCard from "../components/CourseCard";
 import { fetchCourses } from "../services/courseApi";
 import * as Sentry from "@sentry/react";
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  const [courses, setCourses] = useState([]);
+  const [, setCourses] = useState([]);
   const navigate = useNavigate();
   const carouselRef = useRef(null);
 
