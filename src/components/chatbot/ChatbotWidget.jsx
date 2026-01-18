@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { X, Send, Sparkles, RotateCcw, MessageSquare, Loader2 } from "lucide-react";
 import { sendChatMessage } from "../../services/chatbotApi";
 import { fetchMyEnrollments } from "../../services/enrollment";
@@ -10,16 +10,13 @@ const ChatbotWidget = ({ user }) => {
   const [input, setInput] = useState("");
   const [chatContext, setChatContext] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-
-  // Initialize messages - will be set properly in useEffect
-  const [messages, setMessages] = useState([]);
   
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
   const hasInitialized = useRef(false);
 
-  // Helper function to get welcome message
-  const getWelcomeMessage = () => ({
+  // ✅ FIX: Memoized welcome message to prevent dependency issues
+  const getWelcomeMessage = useCallback(() => ({
     sender: "bot",
     text: `👋 Hi ${user?.name || "there"}! I'm your AI Learning Assistant. I can help you with:
 
@@ -30,23 +27,24 @@ const ChatbotWidget = ({ user }) => {
 
 ${!user ? "💡 Log in for personalized recommendations based on your progress!" : "How can I assist you today?"}`,
     timestamp: new Date().toISOString()
-  });
+  }), [user]);
 
-  // Initialize chat history on mount
-  useEffect(() => {
+  // ✅ FIX: Initialize messages immediately with welcome message to prevent blank space
+  const [messages, setMessages] = useState(() => {
     const saved = localStorage.getItem("chatHistory");
-    
     if (saved) {
       try {
-        setMessages(JSON.parse(saved));
+        return JSON.parse(saved);
       } catch (error) {
         console.error("Failed to parse chat history:", error);
-        setMessages([getWelcomeMessage()]);
+        return [getWelcomeMessage()];
       }
-    } else {
-      setMessages([getWelcomeMessage()]);
     }
-    
+    return [getWelcomeMessage()];
+  });
+
+  // Mark as initialized after first render
+  useEffect(() => {
     hasInitialized.current = true;
   }, []);
 
@@ -72,8 +70,8 @@ ${!user ? "💡 Log in for personalized recommendations based on your progress!"
   // Build enhanced chatbot context with real API calls
   useEffect(() => {
     const buildContext = async () => {
-      // Handle guest users (not logged in)
-      if (!user || !user.id) {
+      // ✅ FIX: Handle guest users - check for BOTH user.id and user._id
+      if (!user || !(user.id || user._id)) {
         setChatContext(`
 User Type: Guest (Not logged in)
 Access Level: Limited
@@ -121,11 +119,11 @@ User Profile:
 - Name: ${user.name}
 - Email: ${user.email}
 - Role: ${user.role || "Student"}
-- User ID: ${user.id}
+- User ID: ${user.id || user._id}
 
 Learning Journey:
 - Total Enrolled Courses: ${enrollments.length}
-- Active Learning Status: ${enrollments.length > 0 ? "Active Learner" : "New User - Ready to start learning!"}
+- Active Learning Status: ${enrollments.length > 0 ? "Active Learner" : "Logged-in user with no enrolled courses yet"}
 
 Current Course Progress:
 ${progressDetails.length > 0 ? progressDetails.join('\n') : '- No enrollments yet. Encourage user to explore available courses.'}

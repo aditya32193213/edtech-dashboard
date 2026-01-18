@@ -21,55 +21,42 @@ export const sendChatMessage = async ({ message, context }) => {
       }
     );
 
+    // ✅ FIX: Always return response data on success
     return response.data;
   } catch (error) {
     console.error("Chat API Error:", error);
 
-    // Handle specific error cases
-    if (error.response?.data?.reply) {
-      // Server returned a formatted error message
-      return error.response.data;
-    }
-
-    if (error.code === 'ECONNABORTED') {
-      throw new Error("Request timeout. Please try again.");
-    }
-
-    if (error.response?.status === 429) {
-      throw new Error("Too many requests. Please wait a moment.");
-    }
-
-    // Generic error
-    throw new Error("Unable to reach AI assistant. Please try again later.");
-  }
-};
-
-/**
- * Get quick action suggestions
- * @returns {Promise<Array>} - Array of suggestion strings
- */
-export const getChatSuggestions = async () => {
-  try {
-    const token = localStorage.getItem("token");
+    // ✅ FIX: Handle specific error cases with normalized messages
     
-    const response = await api.get(
-      "/ai/suggestions",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-    );
+    // Rate limiting (429)
+    if (error.response?.status === 429) {
+      throw new Error("I'm getting a lot of questions right now. Please wait a moment 🙏");
+    }
 
-    return response.data.suggestions || [];
-  } catch (error) {
-    console.error("Suggestions API Error:", error);
-    // Return default suggestions on error
-    return [
-      "Recommend a course for me",
-      "What should I learn next?",
-      "Show my progress",
-      "Give me study tips"
-    ];
+    // Request timeout
+    if (error.code === "ECONNABORTED") {
+      throw new Error("Request timed out. Please try again.");
+    }
+
+    // Network errors
+    if (error.message?.includes("network") || error.code === "ERR_NETWORK") {
+      throw new Error("Unable to connect. Please check your internet connection 🌐");
+    }
+
+    // Server errors (5xx)
+    if (error.response?.status >= 500) {
+      throw new Error("Server error. Please try again in a moment 🔧");
+    }
+
+    // Client errors (4xx) - extract server message if available
+    if (error.response?.status >= 400 && error.response?.status < 500) {
+      const serverMessage = error.response?.data?.message || error.response?.data?.error;
+      if (serverMessage) {
+        throw new Error(serverMessage);
+      }
+    }
+
+    // ✅ FIX: Generic fallback error - always throw, never return silently
+    throw new Error("Unable to reach AI assistant. Please try again later.");
   }
 };
